@@ -24,4 +24,8 @@ export class JustForYouController {
     removeJustForYou(@Param('id') id: number) {
         return this.justforyou.remove(id)
     }
+    @Delete('/delete-all')
+    removeAll() {
+        return this.justforyou.removeAll()
+    }
 }

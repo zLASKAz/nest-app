@@ -34,4 +34,11 @@ export class JustForYouService {
         }
         return this.repo.remove(data)
     }
+    async removeAll() {
+        const data = await this.repo.find();
+        if (!data) {
+            throw new Error("Id not found")
+        }
+        return this.repo.remove(data)
+    }
 }

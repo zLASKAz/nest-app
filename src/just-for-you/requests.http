@@ -16,3 +16,6 @@ GET http://localhost:3000/api/just-for-you/
 
 ### Delete 
 Delete http://localhost:3000/api/just-for-you/delete/2
+
+### Delete all
+Delete http://localhost:3000/api/just-for-you/delete-all

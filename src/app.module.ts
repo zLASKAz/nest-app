@@ -14,32 +14,45 @@ const cookieSession = require('cookie-session')
     envFilePath: `.env.${process.env.NODE_ENV}`
   }),
   // TypeOrmModule.forRoot(),
-  TypeOrmModule.forRootAsync({
-    inject: [ConfigService],
-    useFactory: (config: ConfigService) => {
-      return {
-        // type: 'sqlite',
-        // database: config.get<string>('DB_NAME'),
-        // synchronize: true,
-        // // !!!! mean typeorm ดูที่ entity ว่าตัว database จะ field อะไรบ้างจาก entity และจะลบหรือเพิ่ม field ที่มีหรือยังไม่มีใน database
-        // // เมื่ออยู่ใน dev mode สามารถเปิดเป็น true ได้และเมื่อเป็น production ควรปิด false และไม่ใช้งานอีกต่อไป
-        // entities: [JustForYou]
-        // // typeorm new type,database,entities to connect to db
-        type: 'postgres',
-        url: process.env.DATABASE_URL,
-        migrationsRun: true,
-        entities: ['**/*.entity.js'],
-        ssl: {
-          rejectUnauthorized: false,
-        }
-      }
-    }
+  // TypeOrmModule.forRootAsync({
+  //   inject: [ConfigService],
+  //   useFactory: (config: ConfigService) => {
+  //     return {
+  //       // type: 'sqlite',
+  //       // database: config.get<string>('DB_NAME'),
+  //       // synchronize: true,
+  //       // // !!!! mean typeorm ดูที่ entity ว่าตัว database จะ field อะไรบ้างจาก entity และจะลบหรือเพิ่ม field ที่มีหรือยังไม่มีใน database
+  //       // // เมื่ออยู่ใน dev mode สามารถเปิดเป็น true ได้และเมื่อเป็น production ควรปิด false และไม่ใช้งานอีกต่อไป
+  //       // entities: [JustForYou]
+  //       // // typeorm new type,database,entities to connect to db
+  //       type: 'postgres',
+  //       url: process.env.DATABASE_URL,
+  //       migrationsRun: true,
+  //       entities: ['**/*.entity.js'],
+  //       ssl: {
+  //         rejectUnauthorized: false,
+  //       }
+  //     }
+  //   }
+  // }),
+
+  TypeOrmModule.forRoot({
+    type: 'postgres',
+    host: 'db',
+    port: 5432,
+    username: 'postgres',
+    password: 'postgres',
+    database: 'postgres',
+    entities: [JustForYou],
+    synchronize: true,
+    autoLoadEntities: true,
   }),
     WhichListModule,
     JustForYouModule],
   controllers: [AppController],
   providers: [AppService],
 })
+
 export class AppModule {
   constructor(private configService: ConfigService) { }
   configure(consumer: MiddlewareConsumer) {
