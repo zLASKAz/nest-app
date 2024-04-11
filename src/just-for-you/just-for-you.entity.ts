@@ -11,6 +11,9 @@ export class JustForYou {
     @Column()
     price: string
 
+    @Column()
+    image: string
+
     // afterinssert update and remove is a hook but when you not create a user but save with a plain object 
     // hook will not executed
     @AfterInsert()
