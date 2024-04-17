@@ -2,10 +2,10 @@ POST http://localhost:3000/api/just-for-you/post
 content-type: application/json
 
 {
-    "name": "LENOVO",
-    "price": "2000$"
+  "name": "ASUS FHD Gaming Laptop",
+  "price": "$960",
+  "image": "/bell-try-to-test-image/gaming-laptop.png"
 }
-
 
 ### get
 GET http://localhost:3000/api/just-for-you/2
